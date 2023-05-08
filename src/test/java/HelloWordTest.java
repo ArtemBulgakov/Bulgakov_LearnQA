@@ -4,6 +4,6 @@ public class HelloWordTest {
 
     @Test
     public void testHellow(){
-        System.out.println("Hellow,Word");
+        System.out.println("Hello from Artem");
     }
 }
