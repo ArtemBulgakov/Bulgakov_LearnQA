@@ -14,10 +14,13 @@ public class HelloWordTest {
 
         Response response = RestAssured
                 .given()
-                .get("https://playground.learnqa.ru/api/get_json_homework")
+                .redirects()
+                .follow(false)
+                .when()
+                .get("https://playground.learnqa.ru/api/long_redirect")
                 .andReturn();
 
-        System.out.println("THE TEXT OF THE SECOND MESSAGE - " + response.jsonPath().getList("messages.message").get(1).toString());
+        System.out.println("redirect to - " + response.getHeader("Location"));
 
     }
 }
