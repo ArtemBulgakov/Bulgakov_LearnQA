@@ -1,17 +1,14 @@
 import io.restassured.RestAssured;
-import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class HelloWordTest {
 
 
     @Test
-    public void testRestAssured(){
+    public void testRestAssured() {
 
+        int i = 1;
         Response response = RestAssured
                 .given()
                 .redirects()
@@ -20,7 +17,24 @@ public class HelloWordTest {
                 .get("https://playground.learnqa.ru/api/long_redirect")
                 .andReturn();
 
-        System.out.println("redirect to - " + response.getHeader("Location"));
+        String HedLocation = response.getHeader("Location");
+        System.out.println(i + " " + "redirect to - " + response.getHeader("Location"));
+        System.out.println();
 
+        while (response.getStatusCode() > 200) {
+            response = RestAssured
+                    .given()
+                    .redirects()
+                    .follow(false)
+                    .when()
+                    .get(HedLocation)
+                    .andReturn();
+            if (response.getStatusCode() > 200) {
+                i++;
+                System.out.println(i + " " + "redirect to - " + response.getHeader("Location"));
+                System.out.println();
+            }
+            HedLocation = response.getHeader("Location");
+        }
     }
 }
