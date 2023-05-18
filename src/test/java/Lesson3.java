@@ -25,7 +25,19 @@ public class Lesson3 {
                 .andReturn();
 
         Assertions.assertNotNull(response.getCookie("HomeWork"));
-        Assertions.assertEquals("hw_value",response.getCookie("HomeWork"));
+        Assertions.assertEquals("hw_value", response.getCookie("HomeWork"));
+    }
+
+    @Test
+    public void task3_Ex12() {
+
+        Response response = RestAssured
+                .given()
+                .when()
+                .get("https://playground.learnqa.ru/api/homework_header")
+                .andReturn();
+        Assertions.assertNotNull(response.getHeader("x-secret-homework-header"));
+        Assertions.assertEquals("Some secret value", response.getHeader("x-secret-homework-header"));
     }
 
 }
