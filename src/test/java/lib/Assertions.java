@@ -52,4 +52,12 @@ public class Assertions {
         };
     }
 
+    public static void assertValueEquals(String responseField, String expectedAnswer) {
+        assertEquals(
+                expectedAnswer,
+                responseField,
+                "Response text is not as expected"
+        );
+    }
+
 }
