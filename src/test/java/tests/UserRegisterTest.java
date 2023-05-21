@@ -31,11 +31,12 @@ public class UserRegisterTest extends BaseTestCase {
         }
 
     }
+
     @Test
     public void testCreateUserSuccessfully() {
         Map<String, String> userData = DataGenerator.getRegistrationData();
         Response responseCreateUser = ApiCoreRequests
-                .makePostRequest("https://playground.learnqa.ru/api/user/",userData);
+                .makePostRequestSuccessfulCreate("https://playground.learnqa.ru/api/user/",userData);
 
         Assertions.assertResponseCodeEquals(responseCreateUser, 200);
         Assertions.assertJsonHasField(responseCreateUser, "id");
@@ -44,7 +45,7 @@ public class UserRegisterTest extends BaseTestCase {
 
 
     @Test
-    @Description("This test unsuccessful authorize user without @ in the email")
+    @Description("This test unsuccessful create user without @ in the email")
     @DisplayName("Test unsuccessful create user")
     public void testCreateUserWithIncorrectMail() {
 
@@ -61,7 +62,7 @@ public class UserRegisterTest extends BaseTestCase {
 
     @ParameterizedTest(name = "{index} - without {0} ")
     @ValueSource(strings = {"email","password","username","firstName","lastName"})
-    @Description("This test unsuccessful authorize user without one of the fields")
+    @Description("This test unsuccessful create user without one of the fields")
     @DisplayName("Test unsuccessful create user")
     public void makePostRequestWithoutOneFields(String oneField) {
 
@@ -76,7 +77,7 @@ public class UserRegisterTest extends BaseTestCase {
     }
 
     @Test
-    @Description("This test unsuccessful authorize user without very short name")
+    @Description("This test unsuccessful create user without very short name")
     @DisplayName("Test unsuccessful create user")
     public void testCreateUserWithShortName() {
 
@@ -93,7 +94,7 @@ public class UserRegisterTest extends BaseTestCase {
     }
 
     @Test
-    @Description("This test unsuccessful authorize user without very long name")
+    @Description("This test unsuccessful create user without very long name")
     @DisplayName("Test unsuccessful create user")
     public void testCreateUserWithLongName() {
 

@@ -48,6 +48,15 @@ public class ApiCoreRequests {
                 .andReturn();
     }
 
+    @Step("Make a Post-request")
+    public static Response makePostRequestSuccessfulCreate(String url, Map<String, String> userData){
+        return given()
+                .filter(new AllureRestAssured())
+                .body(userData)
+                .post(url)
+                .andReturn();
+    }
+
     @Step("Make a Post-request create user without @ in the mail")
     public static Response makePostRequestIncorrectMail(String url, Map<String, String> userData){
         return given()
@@ -83,4 +92,33 @@ public class ApiCoreRequests {
                 .post(url)
                 .andReturn();
     }
+
+    @Step("Make a Post-request")
+    public static Response makePostRequestSuccessfulCreate16Ex(String url, Map<String, String> userData){
+        return given()
+                .filter(new AllureRestAssured())
+                .body(userData)
+                .post(url)
+                .andReturn();
+    }
+
+    @Step("Make a Post-request successful authorization")
+    public static Response makePostRequestAuthorization(String url, Map<String, String> authData){
+        return given()
+                .filter(new AllureRestAssured())
+                .body(authData)
+                .post(url)
+                .andReturn();
+    }
+
+    @Step("Make a GET-request with token and auth cookie random user")
+    public static Response makeGetRequestSuccessfulAuth(String url, String token, String cookie) {
+        return given()
+                .filter(new AllureRestAssured())
+                .header(new Header("x-csrf-token", token))
+                .cookie("auth_sid", cookie)
+                .get(url)
+                .andReturn();
+    }
+
 }
