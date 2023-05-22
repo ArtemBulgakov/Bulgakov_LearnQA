@@ -129,7 +129,7 @@ public class ApiCoreRequests {
                 .put(url)
                 .andReturn();
     }
-    @Step("Make a Put-request unauthorized")
+    @Step("Make a Put-request authorized")
     public static Response makePutRequestAuthorized(String url, Map<String, String> authData, String token, String cookie){
         return given()
                 .filter(new AllureRestAssured())
@@ -139,5 +139,16 @@ public class ApiCoreRequests {
                 .put(url)
                 .andReturn();
     }
+
+    @Step("Make a Delete-request authorized")
+    public static Response makeDeleteRequestAuthorized(String url, String token, String cookie){
+        return given()
+                .filter(new AllureRestAssured())
+                .header(new Header("x-csrf-token", token))
+                .cookie("auth_sid", cookie)
+                .delete(url)
+                .andReturn();
+    }
+
 
 }
