@@ -1,6 +1,8 @@
 package tests;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
 import lib.Assertions;
@@ -12,6 +14,8 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
+@Epic("Delete cases")
+@Feature("Delete user")
 public class UserDeleteTest extends BaseTestCase {
 
 

@@ -1,6 +1,8 @@
 package tests;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
@@ -13,6 +15,8 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
+@Epic("View cases")
+@Feature("View user data")
 public class UserGetTest extends BaseTestCase {
 
     @Test

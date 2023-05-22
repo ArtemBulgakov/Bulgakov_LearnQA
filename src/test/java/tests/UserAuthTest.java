@@ -35,8 +35,7 @@ public class UserAuthTest extends BaseTestCase {
         authData.put("email", "vinkotov@example.com");
         authData.put("password", "1234");
 
-        Response responseGetAuth = apiCoreRequests
-                .makePostRequest("https://playground.learnqa.ru/api/user/login", authData);
+        Response responseGetAuth = ApiCoreRequests.makePostRequest("https://playground.learnqa.ru/api/user/login", authData);
 
 
         this.cookie = this.getCookie(responseGetAuth, "auth_sid");
@@ -66,12 +65,12 @@ public class UserAuthTest extends BaseTestCase {
     public void testNegativeAuthUser(String condition) {
 
         if (condition.equals("cookie")) {
-            Response responseForCheck = apiCoreRequests.makeGetRequestWithCookie(" https://playground.learnga.ru/api/user/auth ",
+            Response responseForCheck = apiCoreRequests.makeGetRequestWithCookie("https://playground.learnqa.ru/api/user/auth",
                     this.cookie
             );
             Assertions.assertJsonByName(responseForCheck, "user_id", 0);
         } else if (condition.equals("headers")) {
-            Response responseForCheck = apiCoreRequests.makeGetRequestWithToken(" https://playground.learnga.ru/api/user/auth ",
+            Response responseForCheck = apiCoreRequests.makeGetRequestWithToken("https://playground.learnqa.ru/api/user/auth",
                     this.header
             );
             Assertions.assertJsonByName(responseForCheck, "user_id", 0);
