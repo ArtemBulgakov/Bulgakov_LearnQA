@@ -18,7 +18,6 @@ import java.util.Map;
 @Feature("Delete user")
 public class UserDeleteTest extends BaseTestCase {
 
-
     @Test
     @Description("This test unsuccessful delete user blocked for deletion")
     @DisplayName("Test unsuccessful delete user blocked for deletion")

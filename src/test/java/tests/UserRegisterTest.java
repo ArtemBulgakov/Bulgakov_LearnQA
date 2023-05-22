@@ -22,6 +22,8 @@ import java.util.Map;
 public class UserRegisterTest extends BaseTestCase {
 
     @Test
+    @Description("This test unsuccessful create user with existing email")
+    @DisplayName("Test unsuccessful create user")
     public void testCreateUserWithExistingEmail() {
         {
             String email = "vinkotov@example.com";
@@ -37,6 +39,8 @@ public class UserRegisterTest extends BaseTestCase {
     }
 
     @Test
+    @Description("This test successful create user")
+    @DisplayName("Test create user")
     public void testCreateUserSuccessfully() {
         Map<String, String> userData = DataGenerator.getRegistrationData();
         Response responseCreateUser = ApiCoreRequests
